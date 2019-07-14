@@ -1,0 +1,27 @@
+@startuml
+
+object JupiterEngineDescriptor_1715 {
+    displayName = "JUnit Jupiter"
+}
+object ClassTestDescriptor_1708 {
+    displayName = "SimpleTest"
+}
+object TestTemplateTestDescriptor_1684 {
+    displayName = "sayHelloMore()"
+}
+object TestTemplateTestInvocationDescriptor_1674 {
+    displayName = "repetition 1 of 2"
+    invocationContext = RepeatedTestInvocationContext_1741
+}
+object RepeatedTestInvocationContext_1741 {
+    currentRepetition = 1
+    totalRepetitions = 2
+    formatter.pattern = "repetition {currentRepetition} of {totalRepetitions}"
+}
+
+JupiterEngineDescriptor_1715 *-- ClassTestDescriptor_1708
+ClassTestDescriptor_1708 *-- TestTemplateTestDescriptor_1684
+TestTemplateTestDescriptor_1684 *-- TestTemplateTestInvocationDescriptor_1674
+TestTemplateTestInvocationDescriptor_1674 o-- RepeatedTestInvocationContext_1741
+
+@enduml

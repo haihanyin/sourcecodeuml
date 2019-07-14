@@ -1,0 +1,13 @@
+@startuml
+object JupiterEngineDescriptor_1638 {
+    displayName = "JUnit Jupiter"
+}
+object ClassTestDescriptor_1631 {
+    displayName = "SimpleTest"
+}
+object TestMethodTestDescriptor_1616 {
+    displayName = "sayHello()"
+}
+JupiterEngineDescriptor_1638 *-- ClassTestDescriptor_1631
+ClassTestDescriptor_1631 *-- TestMethodTestDescriptor_1616
+@enduml

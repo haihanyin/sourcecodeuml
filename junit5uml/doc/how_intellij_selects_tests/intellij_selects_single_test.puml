@@ -1,0 +1,9 @@
+@startuml
+
+IdeaTestRunner --> Junit5IdeaTestRunner: startRunnerWithArgs("org..SimpleTest,sayHello")
+Junit5IdeaTestRunner --> MethodSelectorResolver: resolve test method
+MethodSelectorResolver --> JupiterEngineDescriptor: initiates
+JupiterEngineDescriptor --> ClassTestDescriptor: add class SimpleTest as child
+ClassTestDescriptor --> TestMethodTestDescriptor: add method runTest as child
+
+@enduml
