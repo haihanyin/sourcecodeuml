@@ -1,0 +1,46 @@
+@startuml
+
+interface TestEngine {
+    TestDescriptor discover(EngineDiscoveryRequest, UniqueId)
+    void execute(ExecutionRequest)
+}
+interface TestDescriptor {
+    Optional<TestDescriptor> getParent()
+    Set<? extends TestDescriptor> getChildren()
+    void accept(Visitor)
+}
+abstract HierarchicalTestEngine {
+}
+class JupiterTestEngine {
+}
+class ExecutionRequest {
+    TestDescriptor rootTestDescriptor
+    EngineExecutionListener engineExecutionListener
+}
+interface EngineDiscoveryRequest {
+    List<DiscoverySelector> getSelectorsByType(Class selectorType)
+    List<DiscoveryFilter> getFiltersByType(Class filterType)
+}
+class EngineDiscoveryRequestResolver {
+    void resolve(EngineDiscoveryRequest, TypeDescriptor)
+}
+interface EngineExecutionListener {
+void dynamicTestRegistered()
+void executionSkipped()
+void executionStarted()
+void executionFinished()
+void reportingEntryPublished()
+}
+
+
+TestEngine <|-- HierarchicalTestEngine
+HierarchicalTestEngine <|-- JupiterTestEngine
+TestEngine --> TestDescriptor: discover result
+TestDescriptor --> TestDescriptor: parent/children
+TestEngine --> ExecutionRequest: handle execute request
+ExecutionRequest --> TestDescriptor: execution root
+TestDescriptor <|-- JupiterEngineDescriptor
+JupiterEngineDescriptor <-- JupiterTestEngine: root descriptor
+TestEngine --> EngineDiscoveryRequest: handle discover request
+ExecutionRequest --> EngineExecutionListener: action listener
+@enduml
