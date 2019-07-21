@@ -1,4 +1,4 @@
-package org.github.scuml.jacksonuml.serialization.simple;
+package org.github.scuml.jacksonuml.serialization;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonGetter;

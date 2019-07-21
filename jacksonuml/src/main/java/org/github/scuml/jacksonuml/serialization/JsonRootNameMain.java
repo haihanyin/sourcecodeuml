@@ -1,4 +1,4 @@
-package org.github.scuml.jacksonuml.serialization.simple;
+package org.github.scuml.jacksonuml.serialization;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
