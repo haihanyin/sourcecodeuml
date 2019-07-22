@@ -6,34 +6,34 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
  * - How is a field serialized by its getter?
- * <p>
+ *
  * Call getter by using reflection in BeanPropertyWriter.serializeAsField (ln688)
- * <p>
+ *
  * BeanPropertyWriter originates from BeanSerializerFactory (ln368)
  * List<BeanPropertyWriter> props = findBeanProperties(prov, beanDesc, builder);
- * <p>
+ *
  * The bean description contains all the metadata of the bean, where the property information
  * is retrieved.
  * The bean description is initialized in BeanSerializerFactory (ln135)
  * BeanDescription beanDesc = config.introspect(origType);
- * <p>
+ *
  * origType is derived from the type of the bean class
- * <p>
+ *
  * - How the @JsonProperty is read in serialization?
- * <p>
+ *
  * The field name is written by BeanPropertyWriter, which is used earlier for calling the getter
  * gen.writeFieldName(_name); (ln725)
- * <p>
- *     The _name originates from a POJOPropertyBuilder, in which _name represents the string for
- *     serialization and _internalName represents the actual field name
- * <p>
- *     the name value originates from POJOPropertyBuilder.findExplicitNames
- *     the POJOProertyBuilder contains information about the fields, getters, setters related to
- *     a property etc
- * <p>
- *     the getters are retrieved by calling
- *     AnnotatedMember valueAccessor = beanDesc.findJsonValueAccessor();
- *     in BasicSerializerFactory (ln346)
+ *
+ * The _name originates from a POJOPropertyBuilder, in which _name represents the string for
+ * serialization and _internalName represents the actual field name
+ *
+ * the name value originates from POJOPropertyBuilder.findExplicitNames
+ * the POJOProertyBuilder contains information about the fields, getters, setters related to
+ * a property etc
+ *
+ * the getters are retrieved by calling
+ * AnnotatedMember valueAccessor = beanDesc.findJsonValueAccessor();
+ * in BasicSerializerFactory (ln346)
  * ??
  *
  *
