@@ -36,14 +36,31 @@ import com.fasterxml.jackson.databind.ObjectMapper;
  * in BasicSerializerFactory (ln346)
  * ??
  *
+ * - What is the relationship between the bean serializer and its fields serializers
  *
+ * BeanSerializer(ln151) write object start
+ * BeanSerializerBase serializes each field in a bean
+ * the found serializers for fiels are stored as attributes in BeanPropertyWriter
+ * BeanSerializer(ln157) write object end
+ *
+ * Therefore:
+ * BeanSerializer_MyBean
+ * --BeanPropertyWriter
+ *   --NumberSerializer$IntergerSerializer
+ * --BeanPropertyWriter
+ *   --StringSerializer
  */
 public class JsonPropertyMain {
 
     public static void main(String[] args) throws JsonProcessingException {
+        ObjectMapper objectMapper = new ObjectMapper();
         MyBean bean = new MyBean(1, "My bean");
-        String result = new ObjectMapper().writeValueAsString(bean);
-        System.out.println(result);
+        String result1 = objectMapper.writeValueAsString(bean);
+        System.out.println(result1);
+
+        MyBean bean2 = new MyBean(2, "My bean2");
+        String result2 = objectMapper.writeValueAsString(bean2);
+        System.out.println(result2);
     }
 
     public static class MyBean {

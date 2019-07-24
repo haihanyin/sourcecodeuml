@@ -12,7 +12,7 @@ import java.util.TimeZone;
 /**
  * - How the format is applied?
  *
- * set
+ * BeanSerializerFactory registers a list of serializers for common types, including Date (ln61)
  *
  * Based on the value type, SerializerProvider.findPrimaryPropertySerializer() resolves
  * DateSerializer (which extends DateTimeSerializerBase)
@@ -20,9 +20,7 @@ import java.util.TimeZone;
  *
  * The DateTimeSerializerBase.createContextual finds the format information
  *
- * get
  * BeanWriter uses the revolved serializer to serialize the date value
- * ??
  *
  */
 public class JsonFormatMain {
