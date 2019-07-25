@@ -49,6 +49,14 @@ import com.fasterxml.jackson.databind.ObjectMapper;
  *   --NumberSerializer$IntergerSerializer
  * --BeanPropertyWriter
  *   --StringSerializer
+ *
+ *
+ * - How cache works?
+ * Whenever a serializer is created, it is cached in SerializerCache
+ *
+ * When a new SerializerProvider is needed, when a new serialization occurs, it is initiated with
+ * a readonly version of the cache as well as the cache. It always first tries to look for the serializer in
+ * the copy then in the original cache. In this way, less threading races are needed.
  */
 public class JsonPropertyMain {
 
@@ -82,4 +90,12 @@ public class JsonPropertyMain {
             return name;
         }
     }
+
+    /**
+     * POJOPropertyBuilder
+     *
+     * each property has a name and an internal name
+     * related annotated fields, getters, setters
+     *
+     */
 }

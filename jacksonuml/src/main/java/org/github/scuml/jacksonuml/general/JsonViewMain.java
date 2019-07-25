@@ -4,6 +4,15 @@ import com.fasterxml.jackson.annotation.JsonView;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+/**
+ * View values are found in PropertyBuilder.buildWriter
+ *
+ * a BeanPropertyWriter is created with the View info
+ *
+ * BeanSerializerFactory (ln425) processViews
+ *
+ * In the end, FilteredBeanPropertyWriter.SingleView is created
+ */
 public class JsonViewMain {
 
     public static void main(String[] args) throws JsonProcessingException {
