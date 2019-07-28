@@ -4,6 +4,14 @@ import com.fasterxml.jackson.annotation.JsonUnwrapped;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+/**
+ * In PropertyBuilder, if @JsonUnwrapped is found,
+ * an UnwrappingBeanPropertyWriter is returned(ln241)
+ *
+ * In Serialization, UnWrappingBeanProeprtyWriter.serializeFields(ln 120) will
+ * be executed
+ *
+ */
 public class JsonUnwrappedMain {
 
     public static void main(String[] args) throws JsonProcessingException {
