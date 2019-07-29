@@ -13,6 +13,14 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.util.Date;
 
+/**
+ *  BeanSerializeFactory (ln774)
+ *  JsonSerializer<?> annotatedSerializer = findSerializerFromAnnotation(prov,
+ *                 accessor);
+ *
+ *  The annotated serializer will be used to construct a BeanPropertyWriter (ln224)
+ *  _serializer = (JsonSerializer<Object>) ser;
+ */
 public class SerializerMain {
 
     public static void main(String[] args) throws JsonProcessingException {
