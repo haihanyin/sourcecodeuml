@@ -1,0 +1,34 @@
+@startuml
+
+class SerializerProvider
+class JsonSerializer
+class SerializerCache
+class POJOPropertiesCollector {
+    _properties
+    _creatorProperties
+    _anyGetters
+    _anySetters
+    _anySetterField
+}
+class POJOPropertyBuilder {
+    AnnotatedMethod getGetter()
+    AnnotatedMethod getSetter()
+    AnnotatedField getField()
+}
+class BeanPropertyWriter {
+    void serializeAsField(bean, jsonGenerator, serializerProvider)
+}
+class JsonGenerator
+BeanPropertyWriter --> SerializerProvider: uses
+BeanPropertyWriter --> JsonGenerator: uses
+class BeanSerializerFactory {
+    JsonSerializer<Object> findBeanSerializer(SerializerProvider, JavaType,
+            BeanDescription)
+}
+
+SerializerProvider --> JsonSerializer: finds serializer
+SerializerProvider --> SerializerCache: registers serializer
+SerializerCache --> SerializerProvider: provides serializer
+
+
+@enduml
