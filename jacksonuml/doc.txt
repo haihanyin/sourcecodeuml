@@ -2,7 +2,6 @@
 
 class SerializerProvider
 class JsonSerializer
-class SerializerCache
 class POJOPropertiesCollector {
     _properties
     _creatorProperties
@@ -15,20 +14,27 @@ class POJOPropertyBuilder {
     AnnotatedMethod getSetter()
     AnnotatedField getField()
 }
+
 class BeanPropertyWriter {
     void serializeAsField(bean, jsonGenerator, serializerProvider)
 }
-class JsonGenerator
-BeanPropertyWriter --> SerializerProvider: uses
-BeanPropertyWriter --> JsonGenerator: uses
+
 class BeanSerializerFactory {
-    JsonSerializer<Object> findBeanSerializer(SerializerProvider, JavaType,
-            BeanDescription)
+    JsonSerializer<Object> createSerializer(SerializerProvider, JavaType)
 }
 
-SerializerProvider --> JsonSerializer: finds serializer
-SerializerProvider --> SerializerCache: registers serializer
-SerializerCache --> SerializerProvider: provides serializer
+BeanSerializerFactory --> JsonSerializer: creates
+SerializerProvider --> JsonSerializer: resolves
+BeanSerializerFactory --> JavaType: creates serializer for
+BeanSerializerFactory --> SerializerProvider: creates serializer with
 
-
+BeanPropertyWriter --> JsonGenerator: uses to write
+BeanPropertyDefinition --> BeanPropertyWriter: derives
+BasicBeanDescription o-- BeanPropertyDefinition
+BasicClassIntrospector --> BasicBeanDescription: creates
+BasicClassIntrospector --> POJOPropertiesCollector: creates
+POJOPropertiesCollector --> BeanPropertyDefinition: collects
+POJOPropertyBuilder --|> BeanPropertyDefinition
+ObjectMapper --> BasicClassIntrospector: instantiats
+ObjectMapper --> BeanSerializerFactory: instantiats
 @enduml
