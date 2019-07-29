@@ -10,6 +10,30 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Stream;
 
+/**
+ * BeanSerializerBase
+ * for (final int len = props.length; i < len; ++i) {
+ *                 BeanPropertyWriter prop = props[i];
+ *                 if (prop != null) { // can have nulls in filtered list
+ *                     prop.serializeAsField(bean, gen, provider);
+ *                 }
+ *             }
+ *             if (_anyGetterWriter != null) {
+ *                 _anyGetterWriter.getAndSerialize(bean, gen, provider);
+ *             }
+ *
+ *  first serialize all "normal" properties
+ *  then anyGetter properties
+ *
+ * AnyGetterWriter (ln62)
+ * _mapSerializer.serializeFields((Map<?,?>) value, gen, provider);
+ *
+ * -->MapSerializer.serializeFields
+ *
+ *
+ * - How is it different with keyserializer and other serializers?
+ *
+ */
 public class JsonAnyGetterMain {
 
     public static void main(String[] args) throws Exception {

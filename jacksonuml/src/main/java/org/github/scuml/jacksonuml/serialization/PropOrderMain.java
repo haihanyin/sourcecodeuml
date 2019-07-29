@@ -3,6 +3,12 @@ package org.github.scuml.jacksonuml.serialization;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+/**
+ * POJOPropertiesCollector
+ * _sortProperties(props)
+ *
+ * --> JacksonAnnotationIntrospector.findSerializationPropertyOrder
+ */
 public class PropOrderMain {
 
     public static void main(String[] args) throws Exception {
